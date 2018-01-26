@@ -36,9 +36,41 @@ app.get('/contacts/:id', (req, res) => {
   res.json(contact);
 });
 
+app.post('/contacts', (req, res) => {
+  const { name, phone } = req.body;
+
+  if (!name) {
+    res.status(422).json({ message: '"name" field is required'});
+
+    return;
+  }
+
+  if (!phone) {
+    res.status(422).json({ message: '"phone" field is required'});
+
+    return;
+  }
+
+  const contact = contacts.add({ name, phone });
+
+  res.status(201).json(contact);
+});
+
 app.patch('/contacts/:id', (req, res) => {
   const contactId = parseInt(req.params.id, 10);
   const { name, phone } = req.body;
+
+  if (!name) {
+    res.status(422).json({ message: '"name" field is required'});
+
+    return;
+  }
+
+  if (!phone) {
+    res.status(422).json({ message: '"phone" field is required'});
+
+    return;
+  }
 
   const contact = contacts.update(contactId, { name, phone });
 

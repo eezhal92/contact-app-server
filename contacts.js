@@ -29,6 +29,17 @@ function all({ page = 1, limit = 9 } = {}) {
   };
 };
 
+function add(data) {
+  const lastContact = contacts[contacts.length - 1];
+  const nextId = lastContact ? lastContact.id + 1 : 1;
+
+  const newContact = { id: nextId, ...data, photo: faker.image.avatar() };
+
+  contacts = contacts.concat(newContact);
+
+  return newContact;
+}
+
 function find(id) {
   const contact = contacts.find(contact => contact.id === id);
 
@@ -65,4 +76,5 @@ module.exports = {
   find,
   update,
   remove,
+  add,
 };
