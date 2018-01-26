@@ -1,0 +1,15 @@
+{
+  "engine": {
+    "node": ">=8.9"
+  },
+  "scripts": {
+    "dev": "node --inspect index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "faker": "^4.1.0"
+  }
+}
