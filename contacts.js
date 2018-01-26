@@ -11,10 +11,12 @@ let contacts = Array.from({ length: contactCount }, (val, i) => ({
 function all({ page = 1, limit = 9 } = {}) {
   const begin = (page * limit) - limit;
   const end = begin + limit;
-  const total = contacts.length;
-  const result = contacts.slice(begin, end);
+  const rows = contacts.reverse();
 
-  const hasNextContact = contacts.slice(end, end + 1).length;
+  const total = rows.length;
+  const result = rows.slice(begin, end);
+
+  const hasNextContact = rows.slice(end, end + 1).length;
 
   const nextPage = hasNextContact ? page + 1 : null;
   const prevPage = page - 1 === 0 ? null : page - 1;
