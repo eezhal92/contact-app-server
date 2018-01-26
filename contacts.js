@@ -1,17 +1,20 @@
 const faker = require('faker');
 
 const contactCount = 20;
-let contacts = Array.from({ length: contactCount }, (val, i) => ({
+
+const generateContacts = () => Array.from({ length: contactCount }, (val, i) => ({
   id: i + 1,
   name: faker.name.findName(),
   phone: faker.phone.phoneNumber(),
   photo: faker.image.avatar(),
 }));
 
+let contacts = generateContacts();
+
 function all({ page = 1, limit = 9 } = {}) {
   const begin = (page * limit) - limit;
   const end = begin + limit;
-  const rows = contacts.reverse();
+  const rows = contacts.slice().reverse();
 
   const total = rows.length;
   const result = rows.slice(begin, end);
